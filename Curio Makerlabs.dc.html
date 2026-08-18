@@ -30,6 +30,23 @@
   @keyframes traceRun{0%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
   @keyframes pulseDot{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
   @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  .cr-road-wrap{position:relative;width:100%;aspect-ratio:1380/460}
+  .cr-road-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .cr-node{position:absolute;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,0,0,.5);border:3px solid #0B0B0D;z-index:3}
+  .cr-node--target{background:#15151B;border:2px dashed #8B5CF6}
+  .cr-node-ring{position:absolute;inset:-6px;border-radius:50%;border:1.5px solid currentColor;opacity:.55;animation:pulseDot 2.4s ease-in-out infinite}
+  .cr-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 0 4px rgba(255,255,255,.07);z-index:1;transform:translate(-50%,-50%)}
+  .cr-info{position:absolute;width:180px;z-index:3}
+  .cr-info .cr-date{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8A857D}
+  .cr-info h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:-.01em;line-height:1.28;margin:0 0 6px;color:#FBF6EF}
+  .cr-info p{font-size:12.5px;line-height:1.48;color:#8A857D;margin:0}
+  @media(max-width:700px){
+    .cr-node{width:34px;height:34px}
+    .cr-info{width:135px}
+    .cr-info h3{font-size:13px}
+    .cr-info p{font-size:10.5px;line-height:1.42}
+  }
 </style>
 </helmet>
 
@@ -451,35 +468,62 @@
     </div>
     <h2 data-reveal="1" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,4.6vw,66px);line-height:1;letter-spacing:-.028em;margin:0 0 clamp(36px,4.5vw,60px);color:#FBF6EF;text-wrap:balance">What changed this month.</h2>
 
-    <div style="display:flex;flex-direction:column">
-      <a href="#updates" data-reveal="1" style="display:grid;grid-template-columns:minmax(90px,120px) 1fr;gap:clamp(16px,3vw,40px);padding:clamp(22px,2.6vw,30px) 0;border-top:1px solid rgba(255,255,255,.1);color:inherit" style-hover="background:rgba(255,255,255,.03);color:inherit">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6F6B65;padding-top:5px">Aug 2026</span>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.015em;margin:0 0 8px;color:#FBF6EF">Rev 4 mainboard is back from fab</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:#9A968F;margin:0;max-width:760px;text-wrap:pretty">Moved to the STM32H743 and reworked the power tree. All sixteen ports now hot-swap without a reset. Two of the eight test boards have run continuously for three weeks with modules pulled at random.</p>
-        </div>
-      </a>
-      <a href="#updates" data-reveal="1" style="display:grid;grid-template-columns:minmax(90px,120px) 1fr;gap:clamp(16px,3vw,40px);padding:clamp(22px,2.6vw,30px) 0;border-top:1px solid rgba(255,255,255,.1);color:inherit" style-hover="background:rgba(255,255,255,.03);color:inherit">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6F6B65;padding-top:5px">Jul 2026</span>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.015em;margin:0 0 8px;color:#FBF6EF">3D module view lands in Studio alpha</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:#9A968F;margin:0;max-width:760px;text-wrap:pretty">Plug in an IR module and its twin appears on screen, rotating, with live readings. In a session with nine children, time-to-first-working-project dropped from just over four minutes to under one.</p>
-        </div>
-      </a>
-      <a href="#updates" data-reveal="1" style="display:grid;grid-template-columns:minmax(90px,120px) 1fr;gap:clamp(16px,3vw,40px);padding:clamp(22px,2.6vw,30px) 0;border-top:1px solid rgba(255,255,255,.1);color:inherit" style-hover="background:rgba(255,255,255,.03);color:inherit">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6F6B65;padding-top:5px">Jun 2026</span>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.015em;margin:0 0 8px;color:#FBF6EF">Axon drove itself around a track</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:#9A968F;margin:0;max-width:760px;text-wrap:pretty">First closed-loop line-follow on the bolted chassis, built entirely from stock kit parts. Still overshoots corners at speed &#8212; the encoder mounts are the next revision.</p>
-        </div>
-      </a>
-      <a href="#updates" data-reveal="1" style="display:grid;grid-template-columns:minmax(90px,120px) 1fr;gap:clamp(16px,3vw,40px);padding:clamp(22px,2.6vw,30px) 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);color:inherit" style-hover="background:rgba(255,255,255,.03);color:inherit">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6F6B65;padding-top:5px">May 2026</span>
-        <div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.015em;margin:0 0 8px;color:#FBF6EF">Curriculum mapping began with four teachers</h3>
-          <p style="font-size:15.5px;line-height:1.6;color:#9A968F;margin:0;max-width:760px;text-wrap:pretty">We sat down with four teachers to tie every kit project to a syllabus outcome from pre-KG through 5th. 118 projects mapped so far, and roughly a third were cut for being fun but pointless.</p>
-        </div>
-      </a>
+    <div class="cr-road-wrap" data-reveal="1">
+      <svg class="cr-road-svg" viewBox="0 0 1380 460" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M90,270 C240,270 240,190 390,190 C540,190 540,270 690,270 C840,270 840,190 990,190 C1140,190 1140,270 1290,270" fill="none" stroke="#23262F" stroke-width="22" stroke-linecap="round"/>
+        <path d="M90,270 C240,270 240,190 390,190 C540,190 540,270 690,270 C840,270 840,190 990,190 C1140,190 1140,270 1290,270" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.2" stroke-dasharray="10 12" stroke-linecap="round"/>
+      </svg>
+
+      <span class="cr-dot" style="left:17.4%;top:50%"></span>
+      <span class="cr-dot" style="left:39.1%;top:50%"></span>
+      <span class="cr-dot" style="left:60.9%;top:50%"></span>
+      <span class="cr-dot" style="left:82.6%;top:50%"></span>
+
+      <div class="cr-node" style="left:6.5%;top:58.7%;transform:translate(-50%,-50%);background:#F5A524">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FBF6EF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div class="cr-info" style="left:6.5%;bottom:61%;text-align:left">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:7px;height:7px;border-radius:50%;background:#F5A524;flex-shrink:0"></span><span class="cr-date">May 2026</span></div>
+        <h3>Curriculum mapping began</h3>
+        <p>Four teachers, one syllabus pass &#8212; 118 projects tied to outcomes, pre-KG through 5th.</p>
+      </div>
+
+      <div class="cr-node" style="left:28.3%;top:41.3%;transform:translate(-50%,-50%);background:#2E6BE6">
+        <svg width="19.5" height="19.5" viewBox="0 0 24 24" fill="none" stroke="#FBF6EF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="14" height="10" rx="2"/><circle cx="9" cy="14" r="1.3" fill="#FBF6EF" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="#FBF6EF" stroke="none"/><path d="M9 19v1.6M15 19v1.6"/><path d="M12 9V5.4"/><circle cx="12" cy="3.6" r="1.4"/><path d="M5 12.5H3M21 12.5h-2"/></svg>
+      </div>
+      <div class="cr-info" style="left:28.3%;top:61%;transform:translateX(-50%);text-align:left">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:7px;height:7px;border-radius:50%;background:#2E6BE6;flex-shrink:0"></span><span class="cr-date">Jun 2026</span></div>
+        <h3>Axon drove itself around a track</h3>
+        <p>First closed-loop line-follow on the bolted chassis, built from stock kit parts.</p>
+      </div>
+
+      <div class="cr-node" style="left:50%;top:58.7%;transform:translate(-50%,-50%);background:#22C55E">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FBF6EF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <div class="cr-info" style="left:50%;bottom:61%;transform:translateX(-50%);text-align:left">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;flex-shrink:0"></span><span class="cr-date">Jul 2026</span></div>
+        <h3>3D module view lands in Studio</h3>
+        <p>Plug in a module, its twin appears live on screen &#8212; time-to-first-project fell under a minute.</p>
+      </div>
+
+      <div class="cr-node" style="left:71.7%;top:41.3%;transform:translate(-50%,-50%);background:var(--accent,#F97316)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FBF6EF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+      </div>
+      <div class="cr-info" style="left:71.7%;top:61%;transform:translateX(-50%);text-align:left">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent,#F97316);flex-shrink:0"></span><span class="cr-date">Aug 2026</span></div>
+        <h3>Rev 4 mainboard is back from fab</h3>
+        <p>STM32H743, reworked power tree &#8212; all sixteen ports now hot-swap without a reset.</p>
+      </div>
+
+      <div class="cr-node cr-node--target" style="left:93.5%;top:58.7%;transform:translate(-50%,-50%);border-color:#8B5CF6;color:#8B5CF6">
+        <span class="cr-node-ring" style="color:#8B5CF6"></span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="cr-info" style="left:93.5%;bottom:61%;transform:translateX(-100%);text-align:right">
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-bottom:6px"><span class="cr-date">Oct 2026 &#183; target</span><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex-shrink:0"></span></div>
+        <h3>Curio Studio opens to public beta</h3>
+        <p>Sign-ups open for schools and hobbyists &#8212; the same blocks-to-text editor we build with internally.</p>
+      </div>
     </div>
   </div>
 </section>
