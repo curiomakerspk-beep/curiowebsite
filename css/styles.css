@@ -1002,7 +1002,8 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                    border-color 0.35s;
+                    border-color 0.35s,
+                    box-shadow 0.35s;
 }
 
 .product-card-media {
@@ -2415,8 +2416,9 @@
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: rgba(74,117,209,.42);
+  box-shadow: 0 12px 28px rgba(22,33,62,.16);
 }
 
 .contact-card:hover {
