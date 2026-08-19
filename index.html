@@ -26,11 +26,18 @@
           <span class="nav-logo-text">Makerlabs</span>
         </a>
         <div class="spacer"></div>
-        <div class="nav-links">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+          aria-label="Toggle navigation menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <div class="nav-links" id="nav-links">
           <a class="nav-link" href="#products">Products</a>
           <a class="nav-link" href="#how">How it works</a>
           <a class="nav-link" href="#progress">Progress</a>
           <a class="nav-link" href="#faq">FAQ</a>
+          <a class="nav-link" href="#contact">Contact</a>
           <a class="btn-pill-accent" href="#partner">Partner with us</a>
         </div>
       </div>
@@ -937,6 +944,99 @@
             </p>
           </div>
         </div>
+
+        <ol class="timeline-list">
+          <li class="timeline-item" data-reveal="1">
+            <div class="timeline-marker">
+              <span class="timeline-marker-dot timeline-marker-dot-1"></span>
+            </div>
+            <div class="timeline-card">
+              <img class="timeline-card-img" src="assets/robot-desk.jpeg"
+                alt="Teacher and student mapping a curriculum session" />
+              <div class="timeline-card-meta">
+                <span class="timeline-card-dot timeline-card-dot-1"></span>
+                <span class="timeline-card-date">May 2026</span>
+              </div>
+              <h3 class="timeline-card-title">Curriculum mapping began</h3>
+              <p class="timeline-card-desc">
+                Four teachers, one syllabus pass &#8212; 118 projects tied
+                to outcomes, pre-KG through 5th.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item" data-reveal="1">
+            <div class="timeline-marker">
+              <span class="timeline-marker-dot timeline-marker-dot-2"></span>
+            </div>
+            <div class="timeline-card">
+              <img class="timeline-card-img" src="assets/robot.png" alt="Axon robot chassis" />
+              <div class="timeline-card-meta">
+                <span class="timeline-card-dot timeline-card-dot-2"></span>
+                <span class="timeline-card-date">Jun 2026</span>
+              </div>
+              <h3 class="timeline-card-title">Axon drove itself around a track</h3>
+              <p class="timeline-card-desc">
+                First closed-loop line-follow on the bolted chassis, built
+                from stock kit parts.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item" data-reveal="1">
+            <div class="timeline-marker">
+              <span class="timeline-marker-dot timeline-marker-dot-3"></span>
+            </div>
+            <div class="timeline-card">
+              <img class="timeline-card-img" src="assets/studio-ui.png" alt="Curio Studio 3D module view" />
+              <div class="timeline-card-meta">
+                <span class="timeline-card-dot timeline-card-dot-3"></span>
+                <span class="timeline-card-date">Jul 2026</span>
+              </div>
+              <h3 class="timeline-card-title">3D module view lands in Studio</h3>
+              <p class="timeline-card-desc">
+                Plug in a module, its twin appears live on screen &#8212;
+                time-to-first-project fell under a minute.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item" data-reveal="1">
+            <div class="timeline-marker">
+              <span class="timeline-marker-dot timeline-marker-dot-4"></span>
+            </div>
+            <div class="timeline-card">
+              <img class="timeline-card-img" src="assets/mainboard.png" alt="Curio One rev 4 mainboard" />
+              <div class="timeline-card-meta">
+                <span class="timeline-card-dot timeline-card-dot-4"></span>
+                <span class="timeline-card-date">Aug 2026</span>
+              </div>
+              <h3 class="timeline-card-title">Rev 4 mainboard is back from fab</h3>
+              <p class="timeline-card-desc">
+                STM32H743, reworked power tree &#8212; all sixteen ports
+                now hot-swap without a reset.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item timeline-item--target" data-reveal="1">
+            <div class="timeline-marker">
+              <span class="timeline-marker-dot timeline-marker-dot-5"></span>
+            </div>
+            <div class="timeline-card timeline-card--target">
+              <img class="timeline-card-img" src="assets/board-in-hand.png" alt="Curio kit ready to ship" />
+              <div class="timeline-card-meta">
+                <span class="timeline-card-dot timeline-card-dot-5"></span>
+                <span class="timeline-card-date">Oct 2026 &#183; target</span>
+              </div>
+              <h3 class="timeline-card-title">Curio Studio opens to public beta</h3>
+              <p class="timeline-card-desc">
+                Sign-ups open for schools and hobbyists &#8212; the same
+                blocks-to-text editor we build with internally.
+              </p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -1037,7 +1137,7 @@
           </p>
         </div>
         <div class="contact-grid">
-          <a class="contact-card" href="mailto:roboticskitmfg7@gmail.com?subject=Pilot%20school%20enquiry"
+          <a class="contact-card" href="mailto:sales@curiomaker.ai?subject=Pilot%20school%20enquiry"
             data-reveal="1">
             <span class="contact-eyebrow">For schools</span>
             <span class="contact-title">Join the pilot cohort</span>
@@ -1045,14 +1145,14 @@
               academic year.</span>
             <span class="contact-link">Talk to us &#8599;</span>
           </a>
-          <a class="contact-card" href="mailto:roboticskitmfg7@gmail.com?subject=Investor%20enquiry" data-reveal="1">
+          <a class="contact-card" href="mailto:sales@curiomaker.ai?subject=Investor%20enquiry" data-reveal="1">
             <span class="contact-eyebrow">For investors</span>
             <span class="contact-title">See the build plan</span>
             <span class="contact-desc">Bill of materials, unit economics, revision history and the
               road to pilot revenue.</span>
             <span class="contact-link">Request the deck &#8599;</span>
           </a>
-          <a class="contact-card" href="mailto:roboticskitmfg7@gmail.com?subject=Manufacturing%20enquiry"
+          <a class="contact-card" href="mailto:sales@curiomaker.ai?subject=Manufacturing%20enquiry"
             data-reveal="1">
             <span class="contact-eyebrow">For manufacturing</span>
             <span class="contact-title">Make it with us</span>
@@ -1060,6 +1160,114 @@
               India.</span>
             <span class="contact-link">Send capabilities &#8599;</span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-kicker" data-reveal="1">
+          <span class="kicker-label">Get in touch</span>
+        </div>
+        <h2 class="section-title" data-reveal="1">
+          Let&#8217;s talk.
+        </h2>
+        <p class="section-intro" data-reveal="1">
+          Questions about a product, a pilot, or anything else &#8212;
+          write in and we will get back within a couple of days.
+        </p>
+
+        <div class="contact-card" data-reveal="1">
+          <div class="contact-card-grid">
+            <div class="contact-form-panel">
+              <p class="contact-panel-eyebrow">Send a message</p>
+              <form class="contact-form">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label class="form-label" for="contact-name">Name</label>
+                    <input class="form-input" type="text" id="contact-name" name="name"
+                      placeholder="Your full name" autocomplete="name" required />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="contact-phone">Phone</label>
+                    <input class="form-input" type="tel" id="contact-phone" name="phone"
+                      placeholder="+91 00000 00000" autocomplete="tel" />
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="contact-email">Email</label>
+                  <input class="form-input" type="email" id="contact-email" name="email"
+                    placeholder="you@email.com" autocomplete="email" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="contact-message">Message</label>
+                  <textarea class="form-input form-textarea" id="contact-message" name="message" rows="5"
+                    placeholder="Tell us what you&#8217;re looking for&#8230;" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-form-submit">
+                  Send message
+                  <span class="btn-icon">&#8599;</span>
+                </button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <div class="contact-info-panel">
+              <div class="contact-map">
+                <iframe
+                  title="Curio Makerlabs location on map"
+                  src="https://www.google.com/maps?q=No.10%2F15%2C+3rd+Floor%2C+MMH+Complex%2C+Natesan+Street%2C+Postal+Colony%2C+Thyagaraya+Nagar%2C+Chennai%2C+Tamil+Nadu+600017&output=embed"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+              </div>
+
+              <div class="contact-details">
+                <div class="contact-detail-row">
+                  <span class="contact-detail-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </span>
+                  <div class="contact-detail-body">
+                    <span class="contact-detail-label">Studio address</span>
+                    <p class="contact-detail-text">
+                      No. 10/15, 3rd Floor, MMH Complex, Natesan Street,
+                      Postal Colony, Thyagaraya Nagar, Chennai, Tamil
+                      Nadu, India &#8212; 600017
+                    </p>
+                  </div>
+                </div>
+                <div class="contact-detail-row">
+                  <span class="contact-detail-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
+                    </svg>
+                  </span>
+                  <div class="contact-detail-body">
+                    <span class="contact-detail-label">Phone</span>
+                    <a class="contact-detail-link" href="tel:+919941444888">+91 99414 44888</a>
+                  </div>
+                </div>
+                <div class="contact-detail-row">
+                  <span class="contact-detail-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m3 6 9 6 9-6" />
+                    </svg>
+                  </span>
+                  <div class="contact-detail-body">
+                    <span class="contact-detail-label">Email</span>
+                    <a class="contact-detail-link"
+                      href="mailto:sales@curiomaker.ai">sales@curiomaker.ai</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1096,14 +1304,16 @@
               <a class="footer-link" href="#faq">FAQ</a>
               <a class="footer-link" href="#partner">Partner with
                 us</a>
+              <a class="footer-link" href="#contact">Contact us</a>
             </div>
           </div>
           <div>
             <p class="footer-heading">
               Contact</p>
             <div class="footer-col">
-              <a class="footer-link--email" href="mailto:roboticskitmfg7@gmail.com">roboticskitmfg7@gmail.com</a>
-              <span class="footer-muted">India</span>
+              <a class="footer-link--email" href="mailto:sales@curiomaker.ai">sales@curiomaker.ai</a>
+              <a class="footer-link--email" href="tel:+919941444888">+91 99414 44888</a>
+              <span class="footer-muted">Thyagaraya Nagar, Chennai &#8212; 600017</span>
             </div>
           </div>
         </div>
@@ -1118,6 +1328,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 
