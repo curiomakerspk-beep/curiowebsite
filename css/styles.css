@@ -860,6 +860,16 @@
                   );
 }
 
+.flagship-card .split-grid {
+  grid-template-columns: 3fr 7fr;
+}
+
+@media (max-width: 700px) {
+  .flagship-card .split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .flagship-media {
   background: #efeeec;
   display: flex;
@@ -1312,8 +1322,22 @@
   font-size: 16px;
   line-height: 1.62;
   color: #55607a;
-  margin: 0;
+  margin: 0 0 10px;
+  padding-left: 22px;
+  position: relative;
   text-wrap: pretty;
+}
+
+.banner-desc:last-child {
+  margin-bottom: 0;
+}
+
+.banner-desc::before {
+  content: "\2192";
+  position: absolute;
+  left: 0;
+  color: var(--accent, #4a75d1);
+  font-weight: 700;
 }
 
 .banner-media {
