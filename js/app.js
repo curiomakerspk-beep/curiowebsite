@@ -339,9 +339,9 @@ function wireSensorDemo() {
 /* Until all three are filled in, the form falls back to opening the   */
 /* visitor's own email client with the message pre-filled.             */
 /* ------------------------------------------------------------------ */
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "1_hSMac8AMB30BQYj";
+const EMAILJS_SERVICE_ID = "service_ioz9ysp";
+const EMAILJS_TEMPLATE_ID = "template_idpuu6e";
 
 function wireContactForm() {
   const form = document.querySelector(".contact-form");
