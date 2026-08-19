@@ -10,10 +10,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   applyAccent();
+  wireNav();
   wireReveals();
   wireCounters();
   wireStudioSwiper();
   wireSensorDemo();
+  wireContactForm();
 });
 
 /* ------------------------------------------------------------------ */
@@ -22,6 +24,51 @@ document.addEventListener("DOMContentLoaded", () => {
 function applyAccent(accent) {
   const root = document.querySelector("[data-curio-root]");
   if (root) root.style.setProperty("--accent", accent || "#4A75D1");
+}
+
+/* ------------------------------------------------------------------ */
+/* Sticky nav — mobile hamburger toggle + scrolled shadow              */
+/* ------------------------------------------------------------------ */
+function wireNav() {
+  const nav = document.querySelector(".nav");
+  const toggle = document.getElementById("nav-toggle");
+  const links = document.getElementById("nav-links");
+  if (!nav) return;
+
+  const setShadow = () => {
+    nav.classList.toggle("nav--scrolled", window.scrollY > 4);
+  };
+  setShadow();
+  window.addEventListener("scroll", setShadow, { passive: true });
+
+  if (!toggle || !links) return;
+
+  const closeMenu = () => {
+    toggle.setAttribute("aria-expanded", "false");
+    links.classList.remove("is-open");
+  };
+  const openMenu = () => {
+    toggle.setAttribute("aria-expanded", "true");
+    links.classList.add("is-open");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
+
+  links.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 880) closeMenu();
+  });
 }
 
 /* ------------------------------------------------------------------ */
@@ -279,4 +326,96 @@ function wireSensorDemo() {
     state.reading = compute(state.phase);
     render();
   }, 640);
+}
+
+/* ------------------------------------------------------------------ */
+/* Contact form — sends live via EmailJS (https://www.emailjs.com).    */
+/* Fill in the three IDs below from your EmailJS dashboard:            */
+/*   1. Add an Email Service pointed at sales@curiomaker.ai's inbox    */
+/*      → gives you EMAILJS_SERVICE_ID                                 */
+/*   2. Create a Template with {{name}} {{email}} {{phone}}            */
+/*      {{message}} placeholders → gives you EMAILJS_TEMPLATE_ID       */
+/*   3. Account → General → Public Key → EMAILJS_PUBLIC_KEY            */
+/* Until all three are filled in, the form falls back to opening the   */
+/* visitor's own email client with the message pre-filled.             */
+/* ------------------------------------------------------------------ */
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+function wireContactForm() {
+  const form = document.querySelector(".contact-form");
+  if (!form) return;
+
+  const submitBtn = form.querySelector(".btn-form-submit");
+  const statusEl = form.querySelector(".form-status");
+
+  const isConfigured =
+    EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY" &&
+    EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" &&
+    EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID";
+
+  if (isConfigured && window.emailjs) {
+    window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!isConfigured || !window.emailjs) {
+      sendViaMailto(form);
+      return;
+    }
+
+    setFormStatus(statusEl, "Sending…", "");
+    if (submitBtn) submitBtn.disabled = true;
+
+    window.emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form).then(
+      () => {
+        setFormStatus(statusEl, "Message sent — we’ll get back to you soon.", "ok");
+        form.reset();
+        if (submitBtn) submitBtn.disabled = false;
+      },
+      (err) => {
+        console.error("EmailJS error:", err);
+        setFormStatus(
+          statusEl,
+          "Couldn’t send that — email us directly at sales@curiomaker.ai.",
+          "error"
+        );
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    );
+  });
+}
+
+function setFormStatus(el, text, kind) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = "form-status" + (kind ? " form-status--" + kind : "");
+}
+
+/* Fallback used until EmailJS is configured (see constants above), or  */
+/* if the EmailJS request itself fails to load.                        */
+function sendViaMailto(form) {
+  const name = (form.querySelector("#contact-name") || {}).value || "";
+  const phone = (form.querySelector("#contact-phone") || {}).value || "";
+  const email = (form.querySelector("#contact-email") || {}).value || "";
+  const message = (form.querySelector("#contact-message") || {}).value || "";
+
+  const subject = "Website enquiry from " + (name || "a visitor");
+  const bodyLines = [
+    "Name: " + name,
+    "Phone: " + (phone || "-"),
+    "Email: " + email,
+    "",
+    message,
+  ];
+
+  const mailto =
+    "mailto:sales@curiomaker.ai" +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(bodyLines.join("\n"));
+
+  window.location.href = mailto;
 }
